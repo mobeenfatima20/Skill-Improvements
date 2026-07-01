@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-signal',
@@ -9,6 +9,13 @@ import { Component, signal } from '@angular/core';
 export class Signal {
   
   count = signal(5);
+  doubleCount = computed(() => this.count() * 2);
+    constructor() {
+    // effect(() => {
+    //   console.log('Double Count changed:', this.doubleCount());
+    //   console.log('Count changed:', this.count());
+    // });
+  }
 
   increment() {
     this.count.update(value => value + 1);   
